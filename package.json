@@ -30,7 +30,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "recipe-book-sdk",
+  "name": "recipe-book-api-client",
   "author": "Steven Mercatante",
   "module": "dist/recipe-book-sdk.esm.js",
   "size-limit": [
