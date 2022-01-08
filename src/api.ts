@@ -38,6 +38,12 @@ export interface Recipe {
      * @type {string}
      * @memberof Recipe
      */
+    'active_time'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Recipe
+     */
     'name': string;
     /**
      * 
@@ -51,6 +57,36 @@ export interface Recipe {
      * @memberof Recipe
      */
     'instructions'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Recipe
+     */
+    'public_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Recipe
+     */
+    'notes'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Recipe
+     */
+    'slug'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Recipe
+     */
+    'source'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Recipe
+     */
+    'total_time'?: string;
     /**
      * 
      * @type {string}
