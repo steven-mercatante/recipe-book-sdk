@@ -74,6 +74,12 @@ export interface Recipe {
      * @type {string}
      * @memberof Recipe
      */
+    'owner'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Recipe
+     */
     'slug'?: string;
     /**
      * 
@@ -86,7 +92,7 @@ export interface Recipe {
      * @type {string}
      * @memberof Recipe
      */
-    'tags': string;
+    'tags'?: string;
     /**
      * 
      * @type {string}
