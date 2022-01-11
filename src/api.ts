@@ -86,6 +86,12 @@ export interface Recipe {
      * @type {string}
      * @memberof Recipe
      */
+    'tags': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Recipe
+     */
     'total_time'?: string;
     /**
      * 
@@ -94,6 +100,119 @@ export interface Recipe {
      */
     'video_url'?: string;
 }
+/**
+ * 
+ * @export
+ * @interface RecipeTag
+ */
+export interface RecipeTag {
+    /**
+     * 
+     * @type {string}
+     * @memberof RecipeTag
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RecipeTag
+     */
+    'slug': string;
+}
+
+/**
+ * RecipeTagsApi - axios parameter creator
+ * @export
+ */
+export const RecipeTagsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Fetch all RecipeTags for Recipes that the current user has access to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listRecipeTags: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/recipe-tags/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RecipeTagsApi - functional programming interface
+ * @export
+ */
+export const RecipeTagsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RecipeTagsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Fetch all RecipeTags for Recipes that the current user has access to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listRecipeTags(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RecipeTag>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listRecipeTags(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RecipeTagsApi - factory interface
+ * @export
+ */
+export const RecipeTagsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RecipeTagsApiFp(configuration)
+    return {
+        /**
+         * Fetch all RecipeTags for Recipes that the current user has access to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listRecipeTags(options?: any): AxiosPromise<Array<RecipeTag>> {
+            return localVarFp.listRecipeTags(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RecipeTagsApi - object-oriented interface
+ * @export
+ * @class RecipeTagsApi
+ * @extends {BaseAPI}
+ */
+export class RecipeTagsApi extends BaseAPI {
+    /**
+     * Fetch all RecipeTags for Recipes that the current user has access to.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RecipeTagsApi
+     */
+    public listRecipeTags(options?: AxiosRequestConfig) {
+        return RecipeTagsApiFp(this.configuration).listRecipeTags(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 /**
  * RecipesApi - axios parameter creator

@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -32,14 +32,14 @@
   },
   "name": "recipe-book-api-client",
   "author": "Steven Mercatante",
-  "module": "dist/recipe-book-sdk.esm.js",
+  "module": "dist/recipe-book-api-client.esm.js",
   "size-limit": [
     {
-      "path": "dist/recipe-book-sdk.cjs.production.min.js",
+      "path": "dist/recipe-book-api-client.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/recipe-book-sdk.esm.js",
+      "path": "dist/recipe-book-api-client.esm.js",
       "limit": "10 KB"
     }
   ],
