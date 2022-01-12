@@ -62,12 +62,6 @@ export interface Recipe {
      * @type {string}
      * @memberof Recipe
      */
-    'public_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Recipe
-     */
     'notes'?: string;
     /**
      * 
@@ -226,6 +220,39 @@ export class RecipeTagsApi extends BaseAPI {
  */
 export const RecipesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        canUserEditRecipe: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('canUserEditRecipe', 'id', id)
+            const localVarPath = `/recipes/{id}/can_user_edit/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {Recipe} [recipe] 
@@ -440,6 +467,16 @@ export const RecipesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async canUserEditRecipe(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Recipe>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.canUserEditRecipe(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -511,6 +548,15 @@ export const RecipesApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        canUserEditRecipe(id: string, options?: any): AxiosPromise<Recipe> {
+            return localVarFp.canUserEditRecipe(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -574,6 +620,17 @@ export const RecipesApiFactory = function (configuration?: Configuration, basePa
  * @extends {BaseAPI}
  */
 export class RecipesApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RecipesApi
+     */
+    public canUserEditRecipe(id: string, options?: AxiosRequestConfig) {
+        return RecipesApiFp(this.configuration).canUserEditRecipe(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {Recipe} [recipe] 
